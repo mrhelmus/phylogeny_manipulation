@@ -42,7 +42,6 @@ getGen<-function(x){
           ans
 }
 
-
 #' \code{mti.match} returns multiple matches
 #'
 #' @param x a fasta read cluster from PhyloTA with define as taxon label
@@ -56,4 +55,24 @@ getGen<-function(x){
 
 mti.match<-function(x,table){
   which(!is.na(match(table,x)))
+}
+
+
+#' \code{getGI} parses a fasta file to return genbank id numbers
+#'
+#' @param x a fasta read cluster from PhyloTA with define as taxon label
+#' @details gives genbank id numbers from a fasta object with annotations as given by phyloTA with 'Use define as taxon label'
+#' @return a character vector
+#' @examples \dontrun{
+#' data(daphnia)
+#' x <- daphnia@fasta
+#' getGI(x)
+#' }
+
+get.gi<-function(x){
+          ans<-unlist(getAnnot(x))
+          ans<-strsplit(ans,"[|]")
+          hj<-function(x){x[2]}
+          ans<-unlist(lapply(ans,hj))
+          ans
 }
