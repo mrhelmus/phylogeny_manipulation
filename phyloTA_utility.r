@@ -76,3 +76,8 @@ get.gi<-function(x){
           ans<-unlist(lapply(ans,hj))
           ans
 }
+
+
+
+
+
