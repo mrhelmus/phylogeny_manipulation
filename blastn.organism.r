@@ -10,7 +10,7 @@
 #' @param attempts the number of times to query the NCBI server until an stop error is trigered
 #' @param snooze length of time, in seconds, to wait before another query attempt is attempted
 #'
-#' @details BLASTs a supplied sequence to the genbank nucleotide database within the archieved sequences of a supplied NCBI taxonomic name.
+#' @details BLASTs a supplied sequence to the genbank nucleotide database within the archived sequences of a supplied NCBI taxonomic name.
 #' The NCBI API is documented at \link{http://www.ncbi.nlm.nih.gov/blast/Doc/urlapi.html}.
 #' @return a data.frame with ids, definitions and e-values for all significant hits
 #' @author M.R. Helmus edited Kevin Keenan's version of R. Gentleman \code{blastSequences} code in \code{annotate} \link{http://rstudio-pubs-static.s3.amazonaws.com/12097_1352791b169f423f910d93222a4c2d85.html}
