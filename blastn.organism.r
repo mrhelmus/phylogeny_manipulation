@@ -3,7 +3,7 @@
 #'
 #' @param x sequence as a character vector or an integer corresponding to an entrez gene ID
 #' @param organism name of NCBI clades in which to search for BLAST hits
-#' @param database NCBI database to use, default “nr”
+#' @param database NCBI database to use, default \code{nr}
 #' @param hitListSize number of hits to keep
 #' @param filter sequence filter; \code{L} for Low Complexity, \code{R} for Human Repeats, \code{m} for Mask lookup
 #' @param expect the BLAST expect value above which matches will be returned
