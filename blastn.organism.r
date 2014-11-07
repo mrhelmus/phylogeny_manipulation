@@ -24,7 +24,7 @@
 #'   blastn.organism(myseq, organism="Daphnia", database = "nr", hitListSize = "10", filter = "L", expect = "1e-10", attempts = 10, snooze=5)
 #' }
 blastn.organism <- function (x, organism="Animalia", database = "nr", hitListSize = "10",
-                        filter = "L", expect = "1e-10", attempts = 10,snooze=5)
+                        filter = "L", expect = "1e-10", attempts = 10, snooze=5)
 {
   program <- "blastn"
   baseUrl <- "http://www.ncbi.nlm.nih.gov/blast/Blast.cgi"
