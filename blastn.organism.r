@@ -43,29 +43,33 @@ blastn.organism <- function (x, organism="Animalia", database = "nr", hitListSiz
   url1 <- sprintf("%s?RID=%s&FORMAT_TYPE=XML&CMD=Get", baseUrl, rid)
   Sys.sleep(rtoe)
   .tryParseResult <- function(url, attempts){
-    for (i in 1:(attempts+1)) {
-      result <- tryCatch({
-        xmlTreeParse(url, useInternalNodes=TRUE,
-                     error = xmlErrorCumulator(immediate=FALSE))
-      }, error=function(err) NULL)
-      if (!is.null(result)) return(result)
-      Sys.sleep(snooze)
+    ff=TRUE
+    while(ff){
+      for (i in 1:(attempts+1))
+      {
+        result <- tryCatch({xmlTreeParse(url, useInternalNodes=TRUE,error = xmlErrorCumulator(immediate=FALSE))}, error=function(err) NULL)
+        if (!is.null(result)) {return(result)}
+        Sys.sleep(snooze)
+      }
     }
     alarm()
-    stop(paste("no results after ", attempts,
-               " attempts; please try again later", sep = ""))
+    #stop(paste("no results after ", attempts,
+    #           " attempts; please try again later", sep = ""))
+    Sys.sleep(60)
   }
+
   result <- .tryParseResult(url1, attempts)
   #qseq <- xpathApply(result, "//Hsp_qseq", xmlValue)
   #hseq <- xpathApply(result, "//Hsp_hseq", xmlValue)
   hspev <- xpathApply(result, "//Hsp_evalue", xmlValue)
   if(length(hspev)==0){
-    res<-c(NA,NA,NA,NA)
+    res<-c(NA,NA,NA,NA,NA)
     names(res)<-c("id","definition","hitnum","evalue")
     return(data.frame(t(res)))
   } else {
     hitid <- xpathApply(result, "//Hit_id", xmlValue)
     hitdef <- xpathApply(result, "//Hit_def", xmlValue)
+    hitlength <- xpathApply(result, "//Hit_len", xmlValue)
     hspnum <- xpathApply(result, "//Hsp_num", xmlValue)
     res<-NULL
     kk<-0
@@ -73,8 +77,8 @@ blastn.organism <- function (x, organism="Animalia", database = "nr", hitListSiz
     {
       if(hspnum[k]==1){
         kk<-kk+1
-        res<-rbind(res,c(hitid[kk],hitdef[kk],hspnum[k],hspev[k]))
-      } else {res<-rbind(res,c(hitid[kk],hitdef[kk],hspnum[k],hspev[k]))}
+        res<-rbind(res,c(hitid[kk],hitdef[kk],hitlength[kk],hspnum[k],hspev[k]))
+      } else {res<-rbind(res,c(hitid[kk],hitdef[kk],hitlength[kk],hspnum[k],hspev[k]))}
     }
     colnames(res)<-c("id","definition","hitnum","evalue")
     return(data.frame(res))
