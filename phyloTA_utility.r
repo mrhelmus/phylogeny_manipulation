@@ -66,7 +66,7 @@ mti.match<-function(x,table){
 #' @examples \dontrun{
 #' data(daphnia)
 #' x <- daphnia@fasta
-#' getGI(x)
+#' get.gi(x)
 #' }
 
 get.gi<-function(x){
@@ -79,5 +79,5 @@ get.gi<-function(x){
 
 
 
-
+get.
 
