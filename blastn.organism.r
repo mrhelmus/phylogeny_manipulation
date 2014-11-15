@@ -28,7 +28,7 @@ blastn.organism <- function (x, organism="Animalia", database = "nr", hitListSiz
 {
   program <- "blastn"
   baseUrl <- "http://www.ncbi.nlm.nih.gov/blast/Blast.cgi"
-  if(is.null){
+  if(is.null(filter)){
   query <- paste("QUERY=", as.character(x), "&DATABASE=", database,
                  "&HITLIST_SIZE=", hitListSize, "&EXPECT=", expect, "&PROGRAM=", program,
                  "&ENTREZ_QUERY=", organism, sep = "")
