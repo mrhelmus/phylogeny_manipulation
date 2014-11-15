@@ -44,13 +44,11 @@ getGen<-function(x){
 
 #' \code{mti.match} returns multiple matches
 #'
-#' @param x a fasta read cluster from PhyloTA with define as taxon label
-#' @details gives taxon labels, species names from a fasta object with annotations as given by phyloTA with 'Use define as taxon label'
+#' @param x the subset of values in table to find
+#' @param table a vector of values
+#' @details returns the locations of matches in table for each value in x
 #' @return a character vector
 #' @examples \dontrun{
-#' data(daphnia)
-#' x <- daphnia@fasta
-#' getSpp(x)
 #' }
 
 mti.match<-function(x,table){
@@ -78,6 +76,4 @@ get.gi<-function(x){
 }
 
 
-
-get.
 
